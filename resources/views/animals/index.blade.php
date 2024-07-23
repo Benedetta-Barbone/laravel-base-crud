@@ -17,12 +17,7 @@
                     <h2>
                         {{ $animal->name}}
                     </h2>
-                    <p>
-                        tipo: {{ $animal->species }}
-                    </p>
-                    <p>
-                        età: {{ $animal->age }} anni
-                    </p>
+                    <a href="{{ route('animals.show', $animal)}}">Animal details</a>
                 </article>
 
             @endforeach
