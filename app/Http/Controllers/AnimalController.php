@@ -21,7 +21,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('animals.create');
     }
 
     /**
@@ -29,7 +29,21 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|integer|min:0',
+            'name' => 'required|string|max:255',
+            'species' => 'required|string|max:255',
+            'age' => 'required|integer|min:0',
+        ]);
+
+        Animal::create([
+            'id' => $request->input('id'),
+            'name' => $request->input('name'),
+            'species' => $request->input('species'),
+            'age' => $request->input('age'),
+        ]);
+
+        return redirect()->route('animals.index')->with('success', 'Animale creato con successo!');
     }
 
     /**
