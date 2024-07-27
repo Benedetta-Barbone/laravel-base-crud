@@ -5,6 +5,11 @@
 @section('main-content')
 <form action="{{ route('animals.store') }}" method="POST">
     @csrf
+
+    <label for="id">id:</label>
+    <input type="text" id="id" name="id" value="{{ old('id') }}" required>
+    <br>
+
     <label for="name">Nome:</label>
     <input type="text" id="name" name="name" value="{{ old('name') }}" required>
     <br>

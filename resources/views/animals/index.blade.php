@@ -18,6 +18,13 @@
                         {{ $animal->name}}
                     </h2>
                     <a href="{{ route('animals.show', $animal)}}">Animal details</a>
+                    <a href="{{ route('animals.edit', $animal->id) }}">Modifica</a>
+                |
+                <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Sei sicuro di voler cancellare questo animale?')">Cancella</button>
+                </form>
                 </article>
 
             @endforeach

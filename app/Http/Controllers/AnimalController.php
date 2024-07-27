@@ -57,24 +57,38 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Animal $animal)
+    public function edit(Animal $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        return view('animals.edit', compact('animal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $animal)
+    public function update(Request $request, Animal $id)
     {
-        //
+        $request->validate([
+            'id' => 'required|integer|min:0',
+            'name' => 'required|string|max:255',
+            'species' => 'required|string|max:255',
+            'age' => 'required|integer|min:0',
+        ]);
+
+        $animal = Animal::findOrFail($id);
+        $animal->update($request->all());
+
+        return redirect()->route('animals.index')->with('success', 'Animale aggiornato con successo!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Animal $animal)
+    public function destroy(Animal $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        $animal->delete();
+
+        return redirect()->route('animals.index')->with('success', 'Animale cancellato con successo!');
     }
 }
