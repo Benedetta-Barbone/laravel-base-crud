@@ -3,6 +3,21 @@
 @section('page-title', 'Animal create')
 
 @section('main-content')
+
+@if (session('success'))
+<p style="color: green;">{{ session('success') }}</p>
+@endif
+
+@if ($errors->any())
+<div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ route('animals.store') }}" method="POST">
     @csrf
 

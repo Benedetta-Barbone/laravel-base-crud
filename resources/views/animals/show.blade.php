@@ -22,6 +22,15 @@
                 <p>
                     età: {{ $animal->age }} anni
                 </p>
+
+                <a href="{{ route('animals.edit', $animal->id) }}">Modifica</a>
+
+                <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Sei sicuro di voler cancellare questo animale?')">Cancella</button>
+                </form>
+
                 <a href="{{ route('animals.index', $animal)}}">Torna indietro</a>
             </article>
     </div>

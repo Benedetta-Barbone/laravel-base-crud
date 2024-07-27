@@ -3,6 +3,11 @@
 @section('page-title', 'Animal index')
 
 @section('main-content')
+
+@if (session('success'))
+<p style="color: green;">{{ session('success') }}</p>
+@endif
+
     <div class="container">
         <div class="row">
             <div class="col-12 text-center p-5">

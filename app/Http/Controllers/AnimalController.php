@@ -57,16 +57,15 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Animal $id)
+    public function edit(Animal $animal)
     {
-        $animal = Animal::findOrFail($id);
         return view('animals.edit', compact('animal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $id)
+    public function update(Request $request, Animal $animal)
     {
         $request->validate([
             'id' => 'required|integer|min:0',
@@ -75,7 +74,6 @@ class AnimalController extends Controller
             'age' => 'required|integer|min:0',
         ]);
 
-        $animal = Animal::findOrFail($id);
         $animal->update($request->all());
 
         return redirect()->route('animals.index')->with('success', 'Animale aggiornato con successo!');
@@ -84,9 +82,8 @@ class AnimalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Animal $id)
+    public function destroy(Animal $animal)
     {
-        $animal = Animal::findOrFail($id);
         $animal->delete();
 
         return redirect()->route('animals.index')->with('success', 'Animale cancellato con successo!');

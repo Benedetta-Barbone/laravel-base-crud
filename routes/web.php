@@ -13,11 +13,5 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::resource('/animals', AnimalController::class);
 
-Route::get('/animals',[AnimalController::class, 'index'])->name('animals.index');
-Route::post('/animals',[AnimalController::class, 'store'])->name('animals.store');
-Route::get('/animals/create',[AnimalController::class, 'create'])->name('animals.create');
-Route::post('/animals/edit',[AnimalController::class, 'edit'])->name('animals.edit');
-Route::post('/animals',[AnimalController::class, 'update'])->name('animals.update');
-Route::post('/animals',[AnimalController::class, 'destroy'])->name('animals.destroy');
-Route::get('/animals/{animal}',[AnimalController::class, 'show'])->name('animals.show');
